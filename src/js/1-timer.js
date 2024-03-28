@@ -33,16 +33,17 @@ const options = {
           message: 'Please choose a date in the future',
       });
       } else {
-        selectedDates = selectedDates[0].getTime;
+        userSelectedDate = selectedDates[0].getTime();
         startBtn.disabled = false;
       }
     },
   };
+
+  const fp = flatpickr(pickerInput, options);
   function onStartCounter() {
       counter.start();
     }
-
-
+    
   function convertMs(ms) {
     // Number of milliseconds per unit of time
     const second = 1000;
@@ -66,7 +67,7 @@ const options = {
   console.log(convertMs(140000)); // {days: 0, hours: 0, minutes: 2, seconds: 20}
   console.log(convertMs(24140000)); // {days: 0, hours: 6 minutes: 42, seconds: 20}
   
-  const fp = flatpickr(pickerInput, options);
+  
   const counter = {
        start() {
          intervalId = setInterval(() => {
@@ -77,9 +78,9 @@ const options = {
            pickerInput.disabled = true;
     if (deltaTime <= 1000) {
                  this.stop();
-                }
-                     }, TIMER_DELAY);
-                  },
+                        }
+                      }, TIMER_DELAY);
+                   },
                   stop() {
                   startBtn.disabled = true;
                   pickerInput.disabled = false;
@@ -97,3 +98,4 @@ const options = {
  function addLeadingZero(value) {
    return String(value).padStart(2, '0');
  }
+ 
