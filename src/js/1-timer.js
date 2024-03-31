@@ -29,7 +29,7 @@ const options = {
     onClose(selectedDates) {
       if (selectedDates[0].getTime() < Date.now()) {
         iziToast.warning({
-          //title: 'Caution',
+          title: 'Caution',
           message: 'Please choose a date in the future',
       });
       } else {
@@ -39,7 +39,7 @@ const options = {
     },
   };
 
-  const fp = flatpickr(pickerInput, options);
+const fp = flatpickr(pickerInput, options);
   function onStartCounter() {
       counter.start();
     }
@@ -68,26 +68,27 @@ const options = {
   console.log(convertMs(24140000)); // {days: 0, hours: 6 minutes: 42, seconds: 20}
   
   
-  const counter = {
-       start() {
-         intervalId = setInterval(() => {
-           currentDate = Date.now();
-           const deltaTime = userSelectedDate - currentDate;
-           updateTimerface(convertMs(deltaTime));
-           startBtn.disabled = true;
-           pickerInput.disabled = true;
+const counter = {
+    start() {
+      intervalId = setInterval(() => {
+      currentDate = Date.now();
+      const deltaTime = userSelectedDate - currentDate;
+      updateTimerface(convertMs(deltaTime));
+      startBtn.disabled = true;
+      pickerInput.disabled = true;
     if (deltaTime <= 1000) {
-                 this.stop();
-                        }
-                      }, TIMER_DELAY);
-                   },
-                  stop() {
-                  startBtn.disabled = true;
-                  pickerInput.disabled = false;
-                 clearInterval(intervalId);
-                    return;
-                  },
-                 };
+        this.stop();
+        }
+        }, TIMER_DELAY);
+        },
+        stop() {
+          startBtn.disabled = true;
+          pickerInput.disabled = false;
+          clearInterval(intervalId);
+          return;
+          },
+          };
+
    function updateTimerface({ days, hours, minutes, seconds }) {
    dataDays.textContent = `${days}`;
    dataHours.textContent = `${hours}`;
